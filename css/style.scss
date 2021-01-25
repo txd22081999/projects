@@ -1,6 +1,6 @@
-@import url("https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600;700;900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600;700;900&display=swap');
 
-$img1: url("https://www.metoffice.gov.uk/binaries/content/gallery/metofficegovuk/hero-images/advice/maps-satellite-images/satellite-image-of-globe.jpg");
+$img1: url('https://www.metoffice.gov.uk/binaries/content/gallery/metofficegovuk/hero-images/advice/maps-satellite-images/satellite-image-of-globe.jpg');
 
 * {
   margin: 0;
@@ -10,47 +10,58 @@ $img1: url("https://www.metoffice.gov.uk/binaries/content/gallery/metofficegovuk
 
 body {
   background-color: #202020;
-  font-family: "Titillium Web", sans-serif;
+  font-family: 'Titillium Web', sans-serif;
   color: white;
 }
 
+i {
+  // color: #dbdbdb;
+  margin-top: 2px;
+  margin-left: 5px;
+  position: relative;
+
+  &:hover {
+    &::after {
+      opacity: 1;
+    }
+  }
+
+  &::after {
+    content: 'copy';
+    position: absolute;
+    bottom: -3px;
+    right: -22px;
+    border-radius: 3px;
+    opacity: 0;
+    background-color: black;
+    color: white;
+    font-size: 10px;
+    padding: 3px;
+    font-family: 'Titillium Web';
+  }
+}
+
 .projects {
-  // width: 100vw;
-  // display: flex;
-  // flex-wrap: wrap;
-  // justify-content: space-between;
-
   display: grid;
-  // grid-template-columns: repeat(var(3, auto-fit), minmax(300px, 1fr));
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-
-  // grid-template-rows: auto;
-  // padding: 0.75rem;
-
-  // grid-gap: 20px;
 }
 
 .card {
-  // max-height: 450px;
-  // // height: 100%;
-  // flex-basis: 33%;
   background-color: whitesmoke;
   overflow: hidden;
-  // height: 90px;
   position: relative;
 
   &::after {
-    content: "";
+    content: '';
     display: block;
     padding-bottom: 100%;
   }
 
   &:hover {
     img {
-      filter: blur(10px);
-      // transform: scale(0);
-
-      animation: blurAnimation 2s ease-in-out;
+      filter: blur(0px);
+      transform: scale(1.1);
+      animation: blurAnimation 1.5s ease-in-out;
     }
   }
 
@@ -59,7 +70,7 @@ body {
     height: 100%;
     object-fit: cover;
     transition: filter 0.5s ease-in-out;
-    filter: grayscale(80%);
+    filter: grayscale(90%);
     position: absolute;
   }
 
@@ -70,37 +81,72 @@ body {
     right: 0;
     top: 0;
     bottom: 0;
-    // background-image: $img1;
-    // background-size: cover;
-    // filter: grayscale(80%);
 
     display: grid;
     place-items: center;
 
+    // Overlay
+    &::before {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.164);
+      content: '';
+      top: 0;
+      left: 0;
+      z-index: 2;
+    }
+
     img {
-      z-index: 0;
+      z-index: 1;
       transition: 0.5s ease-in-out;
     }
 
     & > * {
-      z-index: 2;
+      z-index: 5;
     }
 
-    // &:hover {
-    //   img {
-    //     transform: scale(1.1);
-    //   }
-    // }
+    &:hover {
+      .text {
+        animation: 1.5s textAnimation ease-in-out;
+      }
+      .info {
+        transition-delay: 1.2s;
+        opacity: 1;
+      }
+    }
 
     .text {
-      font-size: 15px;
+      font-size: 17px;
       font-weight: 600;
       letter-spacing: 3px;
       z-index: 5;
-      transition: opacity 0.5s ease-in;
+      transition: 0.5s ease-in;
+      position: absolute;
+      // opacity: 0;
 
       &.blur {
         opacity: 0;
+      }
+    }
+
+    .info {
+      margin-top: 40%;
+      font-size: 15px;
+      max-width: 200px;
+      opacity: 0;
+      transition: 0.5s ease-in;
+
+      // font-weight: 600;
+
+      & > p {
+        text-align: center;
+      }
+
+      .info-text {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: 2;
       }
     }
 
@@ -137,18 +183,12 @@ body {
     }
   }
 
-  // .content:hover {
-  //   img ~ .content {
-  //     display: none;
-  //   }
-  // }
-
   &:nth-child(1) {
     background-color: khaki;
   }
 }
 
-@keyframes blurAnimation {
+@keyframes blurAnimation2 {
   0% {
     transform: scale(1);
     filter: blur(0);
@@ -161,17 +201,39 @@ body {
   85% {
     transform: scale(1.1);
     filter: blur(0);
-    // filter: blur();
-  }
-
-  85% {
-    transform: scale(1.1);
-    filter: blur(10px);
-    // filter: blur();
   }
 
   100% {
     transform: scale(0);
     filter: blur(10px);
+  }
+}
+
+@keyframes blurAnimation {
+  0% {
+    transform: scale(1);
+    filter: blur(0);
+  }
+
+  75% {
+    transform: scale(1.1);
+    filter: blur(5px);
+  }
+
+  100% {
+    transform: scale(1.1);
+    filter: blur(0px);
+  }
+}
+
+@keyframes textAnimation {
+  0% {
+    letter-spacing: 3px;
+  }
+  60% {
+    letter-spacing: 10px;
+  }
+  100% {
+    letter-spacing: 3px;
   }
 }

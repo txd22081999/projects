@@ -8,8 +8,32 @@
 
 body {
   background-color: #202020;
-  font-family: "Titillium Web", sans-serif;
+  font-family: 'Titillium Web', sans-serif;
   color: white;
+}
+
+i {
+  margin-top: 2px;
+  margin-left: 5px;
+  position: relative;
+}
+
+i:hover::after {
+  opacity: 1;
+}
+
+i::after {
+  content: 'copy';
+  position: absolute;
+  bottom: -3px;
+  right: -22px;
+  border-radius: 3px;
+  opacity: 0;
+  background-color: black;
+  color: white;
+  font-size: 10px;
+  padding: 3px;
+  font-family: 'Titillium Web';
 }
 
 .projects {
@@ -26,16 +50,18 @@ body {
 }
 
 .card::after {
-  content: "";
+  content: '';
   display: block;
   padding-bottom: 100%;
 }
 
 .card:hover img {
-  -webkit-filter: blur(10px);
-          filter: blur(10px);
-  -webkit-animation: blurAnimation 2s ease-in-out;
-          animation: blurAnimation 2s ease-in-out;
+  -webkit-filter: blur(0px);
+          filter: blur(0px);
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+  -webkit-animation: blurAnimation 1.5s ease-in-out;
+          animation: blurAnimation 1.5s ease-in-out;
 }
 
 .card img {
@@ -47,8 +73,8 @@ body {
   transition: -webkit-filter 0.5s ease-in-out;
   transition: filter 0.5s ease-in-out;
   transition: filter 0.5s ease-in-out, -webkit-filter 0.5s ease-in-out;
-  -webkit-filter: grayscale(80%);
-          filter: grayscale(80%);
+  -webkit-filter: grayscale(90%);
+          filter: grayscale(90%);
   position: absolute;
 }
 
@@ -64,27 +90,72 @@ body {
   place-items: center;
 }
 
+.card .content::before {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.164);
+  content: '';
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+
 .card .content img {
-  z-index: 0;
+  z-index: 1;
   -webkit-transition: 0.5s ease-in-out;
   transition: 0.5s ease-in-out;
 }
 
 .card .content > * {
-  z-index: 2;
+  z-index: 5;
+}
+
+.card .content:hover .text {
+  -webkit-animation: 1.5s textAnimation ease-in-out;
+          animation: 1.5s textAnimation ease-in-out;
+}
+
+.card .content:hover .info {
+  -webkit-transition-delay: 1.2s;
+          transition-delay: 1.2s;
+  opacity: 1;
 }
 
 .card .content .text {
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 600;
   letter-spacing: 3px;
   z-index: 5;
-  -webkit-transition: opacity 0.5s ease-in;
-  transition: opacity 0.5s ease-in;
+  -webkit-transition: 0.5s ease-in;
+  transition: 0.5s ease-in;
+  position: absolute;
 }
 
 .card .content .text.blur {
   opacity: 0;
+}
+
+.card .content .info {
+  margin-top: 40%;
+  font-size: 15px;
+  max-width: 200px;
+  opacity: 0;
+  -webkit-transition: 0.5s ease-in;
+  transition: 0.5s ease-in;
+}
+
+.card .content .info > p {
+  text-align: center;
+}
+
+.card .content .info .info-text {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[3];
+      grid-template-columns: repeat(3, 1fr);
+  -ms-grid-rows: 2;
+      grid-template-rows: 2;
 }
 
 .card .content .video-container {
@@ -112,7 +183,7 @@ body {
   background-color: khaki;
 }
 
-@-webkit-keyframes blurAnimation {
+@-webkit-keyframes blurAnimation2 {
   0% {
     -webkit-transform: scale(1);
             transform: scale(1);
@@ -131,17 +202,59 @@ body {
     -webkit-filter: blur(0);
             filter: blur(0);
   }
+  100% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    -webkit-filter: blur(10px);
+            filter: blur(10px);
+  }
+}
+
+@keyframes blurAnimation2 {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    -webkit-filter: blur(0);
+            filter: blur(0);
+  }
+  50% {
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+    -webkit-filter: blur(0);
+            filter: blur(0);
+  }
   85% {
     -webkit-transform: scale(1.1);
             transform: scale(1.1);
-    -webkit-filter: blur(10px);
-            filter: blur(10px);
+    -webkit-filter: blur(0);
+            filter: blur(0);
   }
   100% {
     -webkit-transform: scale(0);
             transform: scale(0);
     -webkit-filter: blur(10px);
             filter: blur(10px);
+  }
+}
+
+@-webkit-keyframes blurAnimation {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    -webkit-filter: blur(0);
+            filter: blur(0);
+  }
+  75% {
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+    -webkit-filter: blur(5px);
+            filter: blur(5px);
+  }
+  100% {
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+    -webkit-filter: blur(0px);
+            filter: blur(0px);
   }
 }
 
@@ -152,29 +265,41 @@ body {
     -webkit-filter: blur(0);
             filter: blur(0);
   }
-  50% {
+  75% {
     -webkit-transform: scale(1.1);
             transform: scale(1.1);
-    -webkit-filter: blur(0);
-            filter: blur(0);
-  }
-  85% {
-    -webkit-transform: scale(1.1);
-            transform: scale(1.1);
-    -webkit-filter: blur(0);
-            filter: blur(0);
-  }
-  85% {
-    -webkit-transform: scale(1.1);
-            transform: scale(1.1);
-    -webkit-filter: blur(10px);
-            filter: blur(10px);
+    -webkit-filter: blur(5px);
+            filter: blur(5px);
   }
   100% {
-    -webkit-transform: scale(0);
-            transform: scale(0);
-    -webkit-filter: blur(10px);
-            filter: blur(10px);
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+    -webkit-filter: blur(0px);
+            filter: blur(0px);
+  }
+}
+
+@-webkit-keyframes textAnimation {
+  0% {
+    letter-spacing: 3px;
+  }
+  60% {
+    letter-spacing: 10px;
+  }
+  100% {
+    letter-spacing: 3px;
+  }
+}
+
+@keyframes textAnimation {
+  0% {
+    letter-spacing: 3px;
+  }
+  60% {
+    letter-spacing: 10px;
+  }
+  100% {
+    letter-spacing: 3px;
   }
 }
 /*# sourceMappingURL=style.css.map */
