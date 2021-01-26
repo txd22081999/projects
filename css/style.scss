@@ -1,6 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600;700;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600;700;900&display=swap");
 
-$img1: url('https://www.metoffice.gov.uk/binaries/content/gallery/metofficegovuk/hero-images/advice/maps-satellite-images/satellite-image-of-globe.jpg');
+$img1: url("https://www.metoffice.gov.uk/binaries/content/gallery/metofficegovuk/hero-images/advice/maps-satellite-images/satellite-image-of-globe.jpg");
 
 * {
   margin: 0;
@@ -8,10 +8,29 @@ $img1: url('https://www.metoffice.gov.uk/binaries/content/gallery/metofficegovuk
   box-sizing: border-box;
 }
 
+$black: #202020;
+
 body {
   background-color: #202020;
-  font-family: 'Titillium Web', sans-serif;
+  font-family: "Titillium Web", sans-serif;
   color: white;
+
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    // box-shadow: inset 0 0 5px grey;
+    // border-radius: 10px;
+    background: $black;
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: rgb(219, 219, 219);
+    border-radius: 10px;
+  }
 }
 
 i {
@@ -27,7 +46,7 @@ i {
   }
 
   &::after {
-    content: 'copy';
+    content: "copy";
     position: absolute;
     bottom: -3px;
     right: -22px;
@@ -37,7 +56,7 @@ i {
     color: white;
     font-size: 10px;
     padding: 3px;
-    font-family: 'Titillium Web';
+    font-family: "Titillium Web";
   }
 }
 
@@ -52,7 +71,7 @@ i {
   position: relative;
 
   &::after {
-    content: '';
+    content: "";
     display: block;
     padding-bottom: 100%;
   }
@@ -91,7 +110,7 @@ i {
       width: 100%;
       height: 100%;
       background-color: rgba(0, 0, 0, 0.164);
-      content: '';
+      content: "";
       top: 0;
       left: 0;
       z-index: 2;
@@ -133,9 +152,13 @@ i {
     .info {
       margin-top: 40%;
       font-size: 15px;
-      max-width: 200px;
+      max-width: 270px;
+      background-color: rgba(0, 0, 0, 0.253);
+      padding: 4px 10px;
+      border-radius: 10px;
       opacity: 0;
       transition: 0.5s ease-in;
+      // color: black;
 
       // font-weight: 600;
 
@@ -144,9 +167,17 @@ i {
       }
 
       .info-text {
+        padding: 0 5px;
+
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         grid-template-rows: 2;
+        color: white;
+
+        span.email {
+          display: none;
+        }
+        // width: fit-content;
       }
     }
 

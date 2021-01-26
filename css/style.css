@@ -8,8 +8,23 @@
 
 body {
   background-color: #202020;
-  font-family: 'Titillium Web', sans-serif;
+  font-family: "Titillium Web", sans-serif;
   color: white;
+  /* Track */
+  /* Handle */
+}
+
+body::-webkit-scrollbar {
+  width: 10px;
+}
+
+body::-webkit-scrollbar-track {
+  background: #202020;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: #dbdbdb;
+  border-radius: 10px;
 }
 
 i {
@@ -23,7 +38,7 @@ i:hover::after {
 }
 
 i::after {
-  content: 'copy';
+  content: "copy";
   position: absolute;
   bottom: -3px;
   right: -22px;
@@ -33,7 +48,7 @@ i::after {
   color: white;
   font-size: 10px;
   padding: 3px;
-  font-family: 'Titillium Web';
+  font-family: "Titillium Web";
 }
 
 .projects {
@@ -50,7 +65,7 @@ i::after {
 }
 
 .card::after {
-  content: '';
+  content: "";
   display: block;
   padding-bottom: 100%;
 }
@@ -95,7 +110,7 @@ i::after {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.164);
-  content: '';
+  content: "";
   top: 0;
   left: 0;
   z-index: 2;
@@ -139,7 +154,10 @@ i::after {
 .card .content .info {
   margin-top: 40%;
   font-size: 15px;
-  max-width: 200px;
+  max-width: 270px;
+  background-color: rgba(0, 0, 0, 0.253);
+  padding: 4px 10px;
+  border-radius: 10px;
   opacity: 0;
   -webkit-transition: 0.5s ease-in;
   transition: 0.5s ease-in;
@@ -150,12 +168,18 @@ i::after {
 }
 
 .card .content .info .info-text {
+  padding: 0 5px;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: (1fr)[3];
       grid-template-columns: repeat(3, 1fr);
   -ms-grid-rows: 2;
       grid-template-rows: 2;
+  color: white;
+}
+
+.card .content .info .info-text span.email {
+  display: none;
 }
 
 .card .content .video-container {
