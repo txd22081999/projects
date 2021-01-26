@@ -2,7 +2,7 @@ const links = [
   "https://christmas-landing-page-2208.netlify.app/",
   "https://linkedin-clone-2208.web.app/",
   "https://landing-ui-2208.netlify.app/",
-  "c-store-2208.netlify.app",
+  "https://c-store-2208.netlify.app",
   "https://slack-clone-56d3a.web.app/",
   "https://login-form-iota.vercel.app/",
   "https://mask-ui-2208.netlify.app/",
