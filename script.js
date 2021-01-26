@@ -14,13 +14,12 @@ const links = [
 ];
 
 window.onload = () => {
+  console.log("load script");
   const cards = document.querySelectorAll(".card");
   cards.forEach((card) => {
     const index = card.getAttribute("data-index");
-    console.log(index);
     if (index) {
       card.addEventListener("click", () => {
-        console.log("CLICK");
         window.open(links[index]);
       });
     }
@@ -37,8 +36,6 @@ const handleCard = (card) => {
   //   console.log("CLICK");
   //   window.open("https://google.com");
   // });
-
-  console.log(card);
 
   const copyEmail = card.querySelector("i.email");
   if (!copyEmail) {
