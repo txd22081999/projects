@@ -71,12 +71,16 @@ i::after {
 }
 
 .card:hover img {
-  -webkit-filter: blur(0px);
-          filter: blur(0px);
+  -webkit-filter: blur(0px) grayscale(0%);
+          filter: blur(0px) grayscale(0%);
   -webkit-transform: scale(1.1);
           transform: scale(1.1);
   -webkit-animation: blurAnimation 1.5s ease-in-out;
           animation: blurAnimation 1.5s ease-in-out;
+}
+
+.card.black .text {
+  color: black;
 }
 
 .card img {
@@ -103,17 +107,6 @@ i::after {
   display: -ms-grid;
   display: grid;
   place-items: center;
-}
-
-.card .content::before {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.164);
-  content: "";
-  top: 0;
-  left: 0;
-  z-index: 2;
 }
 
 .card .content img {
@@ -154,8 +147,8 @@ i::after {
 .card .content .info {
   margin-top: 40%;
   font-size: 15px;
-  max-width: 270px;
-  background-color: rgba(0, 0, 0, 0.253);
+  max-width: 285px;
+  background-color: rgba(0, 0, 0, 0.575);
   padding: 4px 10px;
   border-radius: 10px;
   opacity: 0;
@@ -179,7 +172,9 @@ i::after {
 }
 
 .card .content .info .info-text span.email {
-  display: none;
+  display: inline-block;
+  margin-left: auto;
+  text-align: right;
 }
 
 .card .content .video-container {
